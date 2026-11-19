@@ -1,0 +1,88 @@
+{
+  "brand": "A Day with Skills",
+  "repo": "https://github.com/mattpocock/skills",
+  "nav": [
+    { "href": "#loop", "label": "The loop" },
+    { "href": "#flow", "label": "Flow map" },
+    { "href": "#day", "label": "Your day" },
+    { "href": "#sessions", "label": "Sessions" },
+    { "href": "#picker", "label": "Which skill?" },
+    { "href": "#all", "label": "All {count}" }
+  ],
+  "hero": {
+    "eyebrow": "A field guide to mattpocock/skills",
+    "title": "Stop prompting. Start a [daily loop] with your {agent.}",
+    "lede": "Matt Pocock's skills are “for real engineers, straight from his .agents directory.” Each one does a single job. This page shows the order to use them through a normal workday, with example sessions for the four situations you'll hit most.",
+    "install": [
+      "claude plugin install mattpocock-skills@claude-plugins-official",
+      "npx skills@latest add mattpocock/skills -a cursor"
+    ],
+    "installNote": "Pick one install per agent, otherwise you get every skill twice. Then run `/setup-matt-pocock-skills` once in each repo.",
+    "floating": ["grill-with-docs", "to-tickets", "tdd", "pr", "retro"],
+    "terminal": [
+      {
+        "you": "/grill-with-docs I want users to save a search and get alerts"
+      },
+      { "dim": "● loading skill grill-with-docs" },
+      {
+        "q": "Q1. Is a \"saved search\" just the text, or the text plus filters?"
+      },
+      { "dim": "  Recommended: text + filters, stored together." },
+      { "you": "text + filters, dietary only for now" },
+      { "dim": "● GLOSSARY.md  + Saved Search" },
+      { "q": "Q2. Where should the alert show up?" }
+    ]
+  },
+  "sections": {
+    "loop": {
+      "eyebrow": "The big picture",
+      "title": "One loop, five stops",
+      "lede": "Every change goes round the same loop. You trigger the main skills yourself with a slash command. Helper skills join in automatically when the agent needs them."
+    },
+    "flow": {
+      "eyebrow": "Where the work goes",
+      "title": "The day as a branching map",
+      "lede": "Drawn like a git-flow diagram. Time runs down, and each lane is a place work lives: your conversation, the docs, the tracker, branches and `main`. Dots are skill runs or files written. Arrows show what feeds what.",
+      "hint": "Scroll sideways to see all six lanes."
+    },
+    "day": {
+      "eyebrow": "Hour by hour",
+      "title": "What a normal day looks like",
+      "lede": "An example day building one feature. The times are only illustrative. The order is the part that matters."
+    },
+    "sessions": {
+      "eyebrow": "See it happen",
+      "title": "Four example sessions",
+      "lede": "Pick a situation. On the left is the chain of skills. On the right is a shortened conversation showing how the session goes.",
+      "note": "These are illustrative sessions, shortened to show the shape. Real skill output is longer and depends on your repo."
+    },
+    "picker": {
+      "eyebrow": "Stuck?",
+      "title": "Which skill do I need right now?",
+      "lede": "Choose what's happening. If none of these fit, `/ask-matt` routes you to the right skill."
+    },
+    "catalog": {
+      "eyebrow": "Cheat sheet",
+      "title": "All {count} skills on one page",
+      "lede": "**User-invoked** skills are the ones you type. They orchestrate. **Model-invoked** skills are tools the agent picks up when they fit."
+    }
+  },
+  "principles": [
+    {
+      "title": "Grill before every change",
+      "text": "The questions are cheap. Fixing wrong assumptions after the code exists costs far more."
+    },
+    {
+      "title": "Keep the glossary alive",
+      "text": "When you and the agent use the same words, misunderstandings drop. `/wait-what` re-explains a confusing reply using those words."
+    },
+    {
+      "title": "Fix the environment, not the prompt",
+      "text": "When something goes wrong, `/retro` turns it into a permanent fix in CLAUDE.md, tests or tooling."
+    }
+  ],
+  "footer": {
+    "credit": "Skills by Matt Pocock:",
+    "update": "Update anytime with `npx skills@latest update`"
+  }
+}

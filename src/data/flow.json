@@ -1,0 +1,80 @@
+{
+  "_format": "Git-flow style map. Lanes left→right; events are rows top→bottom. `from` draws an arrow from that lane's latest earlier event. `tag` adds a pill like a git tag. `full: true` keeps a lane's line the whole height.",
+  "lanes": [
+    { "id": "talk", "label": "You + agent", "stage": "align", "full": true },
+    { "id": "docs", "label": "Docs", "stage": "reflect" },
+    { "id": "tracker", "label": "Tracker", "stage": "plan" },
+    { "id": "feature", "label": "feature/*", "stage": "build" },
+    { "id": "main", "label": "main", "stage": "ship", "full": true },
+    { "id": "fix", "label": "fix/*", "stage": "debug" }
+  ],
+  "events": [
+    { "lane": "main", "tag": "v1.3.0", "note": "start of the day" },
+    {
+      "lane": "talk",
+      "time": "09:00",
+      "skill": "grill-with-docs",
+      "note": "one question at a time"
+    },
+    { "lane": "docs", "from": "talk", "note": "GLOSSARY.md + Saved Search" },
+    { "lane": "docs", "note": "ADR 0007: store filter IDs" },
+    {
+      "lane": "tracker",
+      "from": "talk",
+      "time": "10:15",
+      "skill": "to-spec",
+      "note": "spec #142"
+    },
+    {
+      "lane": "tracker",
+      "skill": "to-tickets",
+      "note": "#143 → #146 with blocking edges"
+    },
+    {
+      "lane": "feature",
+      "from": "tracker",
+      "time": "11:00",
+      "skill": "implement",
+      "note": "ticket #143"
+    },
+    { "lane": "feature", "skill": "tdd", "note": "red → green → refactor" },
+    { "lane": "feature", "skill": "tdd", "note": "next slice: #146" },
+    {
+      "lane": "fix",
+      "from": "main",
+      "time": "14:30",
+      "skill": "diagnosing-bugs",
+      "note": "checkout total 1p off"
+    },
+    { "lane": "fix", "skill": "tdd", "note": "regression test stays" },
+    {
+      "lane": "main",
+      "from": "fix",
+      "tag": "v1.3.1",
+      "skill": "pr",
+      "note": "merge danger: medium"
+    },
+    { "lane": "feature", "skill": "code-review", "note": "standards + spec" },
+    {
+      "lane": "main",
+      "from": "feature",
+      "time": "16:00",
+      "tag": "v1.4.0",
+      "skill": "pr",
+      "note": "summary · evidence · danger: low"
+    },
+    {
+      "lane": "talk",
+      "time": "17:30",
+      "skill": "retro",
+      "note": "worst problem first"
+    },
+    { "lane": "docs", "from": "talk", "note": "CLAUDE.md: fast test command" },
+    {
+      "lane": "docs",
+      "from": "talk",
+      "skill": "handoff",
+      "note": "HANDOFF.md for tomorrow"
+    }
+  ]
+}

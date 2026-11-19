@@ -1,0 +1,82 @@
+{
+  "slots": [
+    {
+      "time": "Day 0",
+      "label": "once per repo",
+      "stage": "neutral",
+      "icon": "setup",
+      "aside": true,
+      "title": "Set up the repo",
+      "skills": ["setup-matt-pocock-skills"],
+      "text": "Tell it where issues live, which triage labels you use and where docs go. Every other skill reads these answers, so you only do this once."
+    },
+    {
+      "time": "09:00",
+      "label": "align",
+      "stage": "align",
+      "icon": "align",
+      "title": "Coffee and a grilling",
+      "skills": ["grill-with-docs"],
+      "text": "Describe the change in one sentence. The agent asks one question at a time, each with a recommended answer. New terms go into the glossary, and hard decisions become ADRs. For non-code plans, use `/grill-me`.",
+      "outputs": ["GLOSSARY.md", "docs/adr/0007-*.md"]
+    },
+    {
+      "time": "10:15",
+      "label": "plan",
+      "stage": "plan",
+      "icon": "plan",
+      "title": "Spec, then tickets",
+      "skills": ["to-spec", "to-tickets"],
+      "text": "The whole conversation becomes a spec in your issue tracker. Then it gets cut into tracer-bullet tickets. Each ticket is a thin slice through every layer, and the blocking edges show which ones can start now.",
+      "outputs": ["issue #142 spec", "#143 → #144 → #145"]
+    },
+    {
+      "time": "11:00",
+      "label": "build",
+      "stage": "build",
+      "icon": "build",
+      "title": "Build ticket by ticket",
+      "skills": ["implement"],
+      "text": "The agent works test-first at the seams you agreed on (`tdd`), then reviews its own diff against your coding standards and against the spec (`code-review`). You review the result, not every keystroke.",
+      "helpers": ["tdd", "code-review"]
+    },
+    {
+      "time": "14:30",
+      "label": "uh-oh",
+      "stage": "debug",
+      "icon": "debug",
+      "title": "Something weird breaks",
+      "skills": ["diagnosing-bugs"],
+      "text": "Say “diagnose this”. Instead of guessing at fixes, the agent works through gates: reproduce, shrink the case, rank hypotheses, add instrumentation, fix, then lock it in with a regression test."
+    },
+    {
+      "time": "16:00",
+      "label": "ship",
+      "stage": "ship",
+      "icon": "ship",
+      "title": "Open the pull request",
+      "skills": ["pr"],
+      "text": "The body has a summary, before/after evidence and an explicit merge-danger call, so your reviewer knows how carefully to look."
+    },
+    {
+      "time": "17:30",
+      "label": "reflect",
+      "stage": "reflect",
+      "icon": "moon",
+      "title": "Retro, or hand off for tomorrow",
+      "skills": ["retro"],
+      "also": ["handoff"],
+      "text": "`/retro` suggests fixes to your environment, worst problem first: a slow test command, a missing glossary term, a vague CLAUDE.md rule. If the work isn't finished, `/handoff` compacts the session into a document a fresh agent can continue from."
+    },
+    {
+      "time": "Fri",
+      "label": "every few days",
+      "stage": "align",
+      "icon": "map",
+      "aside": true,
+      "title": "Survey the codebase",
+      "skills": ["improve-codebase-architecture"],
+      "text": "It scans for deepening opportunities, shows an HTML report, then grills you on the one you pick. Matt calls it “a survey, not a rescue.”"
+    }
+  ]
+}

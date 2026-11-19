@@ -1,0 +1,97 @@
+/* Two-column groups like the original docs: group meta left, skill rows right. */
+.index {
+  display: grid;
+  border-bottom: 1px solid var(--edge);
+}
+.group {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: 32px;
+  padding-block: 30px;
+  border-top: 1px solid var(--edge);
+}
+.group header {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.group h3 {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.group h3 .n {
+  font: 400 0.75rem var(--mono);
+  color: var(--faint);
+}
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.rows li + li {
+  border-top: 1px solid var(--edge);
+}
+.skill-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 12px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.skill-row:hover {
+  background: var(--card);
+}
+.skill-row .name {
+  display: block;
+  font: 400 0.78rem var(--mono);
+  color: var(--muted);
+}
+.skill-row .desc {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-top: 2px;
+}
+.skill-row .go {
+  font-family: var(--mono);
+  color: var(--faint);
+}
+.skill-row:hover .go {
+  color: var(--accent);
+}
+
+.rules {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+.rule {
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.rule h3 {
+  font-size: 1.02rem;
+}
+.rule p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .group {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .rules {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,124 @@
+.day {
+  display: grid;
+  position: relative;
+}
+.day::before {
+  content: "";
+  position: absolute;
+  left: 105px;
+  top: 22px;
+  bottom: 22px;
+  width: 1px;
+  background: var(--edge-2);
+}
+.slot {
+  display: grid;
+  grid-template-columns: 84px 42px 1fr;
+  align-items: start;
+  padding-block: 8px;
+}
+.time {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-align: right;
+  padding-top: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.time small {
+  display: block;
+  font: 400 0.7rem var(--mono);
+  color: var(--faint);
+  letter-spacing: 0;
+}
+.pin {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--c);
+  margin: 24px auto 0;
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    0 0 0 4px var(--paper),
+    0 0 12px var(--c);
+}
+
+.slot-card {
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px 16px;
+  min-width: 0;
+}
+.slot-card .what {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  grid-column: 2;
+  grid-row: 1;
+}
+.slot-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 1.05rem;
+}
+.slot-card p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 62ch;
+}
+.slot-card .out {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+.slot-art {
+  grid-column: 1;
+  grid-row: 1;
+}
+.slot-art.tile {
+  width: 44px;
+  height: 44px;
+}
+.slot.aside .slot-card {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--edge-2);
+}
+
+@media (max-width: 640px) {
+  .day::before {
+    left: 9px;
+  }
+  .slot {
+    grid-template-columns: 20px 1fr;
+  }
+  .slot .time {
+    grid-column: 2;
+    text-align: left;
+    padding: 0 0 6px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .slot .pin {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 8px 0 0 4px;
+  }
+  .slot .slot-card {
+    grid-column: 1 / -1;
+    margin-left: 20px;
+    grid-template-columns: 1fr;
+  }
+  .slot-card .what {
+    grid-column: 1;
+  }
+  .slot-art {
+    display: none;
+  }
+}

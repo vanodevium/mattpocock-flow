@@ -1,0 +1,63 @@
+{
+  "stages": [
+    {
+      "stage": "align",
+      "icon": "align",
+      "step": "Align",
+      "title": "Get grilled",
+      "text": "The agent asks you questions one at a time until every design decision is settled. Matt does this before every change.",
+      "skills": ["grill-with-docs"],
+      "also": ["grill-me"]
+    },
+    {
+      "stage": "plan",
+      "icon": "plan",
+      "step": "Plan",
+      "title": "Write it down",
+      "text": "Turn the conversation into a spec, then split it into thin tracer-bullet tickets with blocking edges.",
+      "skills": ["to-spec", "to-tickets"],
+      "also": ["wayfinder"]
+    },
+    {
+      "stage": "build",
+      "icon": "build",
+      "step": "Build",
+      "title": "Implement",
+      "text": "Build the tickets test-first at the seams you agreed on, and finish with a two-axis review.",
+      "skills": ["implement"],
+      "also": ["implement-spec"]
+    },
+    {
+      "stage": "ship",
+      "icon": "ship",
+      "step": "Ship",
+      "title": "Open the PR",
+      "text": "A PR body with a summary, before/after evidence and a call on how risky the merge is.",
+      "skills": ["pr"],
+      "also": []
+    },
+    {
+      "stage": "reflect",
+      "icon": "reflect",
+      "step": "Reflect",
+      "title": "Tune the setup",
+      "text": "Ask what slowed the session down and fix your environment, starting with the worst problem.",
+      "skills": ["retro"],
+      "also": ["handoff"]
+    }
+  ],
+  "backArrow": "Next change? Back to stop 1.",
+  "helpers": {
+    "title": "Helpers that join in on their own",
+    "text": "These are model-invoked. You don't type them. The agent loads them when the work calls for it, though you can also name them directly.",
+    "skills": [
+      "tdd",
+      "code-review",
+      "diagnosing-bugs",
+      "domain-modeling",
+      "codebase-design",
+      "prototype",
+      "research"
+    ]
+  }
+}

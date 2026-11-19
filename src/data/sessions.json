@@ -1,0 +1,314 @@
+{
+  "_format": "Message types: {you}, {ai, list?, ordered?, rec?}, {event:[{skill}|{file}|{text}]}, {divider}. Text supports `code` and **bold**.",
+  "sessions": [
+    {
+      "id": "feature",
+      "stage": "align",
+      "label": "New feature, idea to PR",
+      "title": "Saved searches for a recipe app",
+      "blurb": "The everyday flow. One feature goes through every stop of the loop in a single session.",
+      "steps": [
+        { "skills": ["grill-with-docs"], "note": "Settle every open decision" },
+        { "skills": ["to-spec"], "note": "Publish the spec as an issue" },
+        { "skills": ["to-tickets"], "note": "Split into tracer bullets" },
+        { "skills": ["implement"], "note": "tdd at seams, then code-review" },
+        { "skills": ["pr"], "note": "Summary, evidence, merge danger" }
+      ],
+      "chat": [
+        {
+          "you": "`/grill-with-docs` Users should be able to save a search and get told when new recipes match it."
+        },
+        {
+          "event": [
+            { "skill": "grill-with-docs" },
+            { "text": "loaded · reading GLOSSARY.md" }
+          ]
+        },
+        {
+          "ai": "**Q1.** Is a saved search only the query text, or the text plus filters like “vegan” or “under 30 min”?",
+          "rec": "Recommended: text + filters, stored as one Saved Search."
+        },
+        { "you": "Text plus filters. Only dietary filters for now." },
+        {
+          "ai": "**Q2.** Where should someone find out about a new match: in the app, by email, or both?",
+          "rec": "Recommended: in-app badge first. Email adds scheduling and unsubscribe work."
+        },
+        { "you": "In-app only. Email can wait." },
+        {
+          "ai": "**Q3.** If a dietary filter is renamed later, should old saved searches follow the rename?",
+          "rec": "Recommended: yes. Store filter IDs, not labels."
+        },
+        { "you": "Yes, IDs." },
+        {
+          "event": [
+            { "text": "wrote" },
+            { "file": "GLOSSARY.md  + Saved Search, + Match" },
+            { "file": "docs/adr/0007-saved-searches-store-filter-ids.md" }
+          ]
+        },
+        { "divider": "plan" },
+        { "you": "`/to-spec`" },
+        {
+          "ai": "Published the spec **“Saved searches with in-app alerts”** as issue `#142`."
+        },
+        { "you": "`/to-tickets`" },
+        {
+          "ai": "Four tracer-bullet tickets:",
+          "ordered": true,
+          "list": [
+            "`#143` Save a search end to end (UI → API → DB)",
+            "`#144` Match new recipes against saved searches (blocked by #143)",
+            "`#145` In-app alert badge (blocked by #144)",
+            "`#146` Rename and delete saved searches (blocked by #143)"
+          ]
+        },
+        { "divider": "build" },
+        { "you": "`/implement #143`" },
+        {
+          "event": [
+            { "skill": "tdd" },
+            {
+              "text": "red: “saving a search keeps its filter IDs” fails → green → refactor"
+            }
+          ]
+        },
+        {
+          "event": [
+            { "skill": "code-review" },
+            {
+              "text": "standards ✓ · spec: empty query was allowed, now rejected"
+            }
+          ]
+        },
+        {
+          "ai": "#143 is done: 6 tests, all green. #144 and #146 are unblocked."
+        },
+        { "divider": "ship" },
+        { "you": "`/pr`" },
+        {
+          "ai": "PR body drafted:",
+          "list": [
+            "**Summary:** users can save a search with dietary filters",
+            "**Before/after:** screenshots of the search page",
+            "**Merge danger:** low. New table, no changes to existing data"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bug",
+      "stage": "debug",
+      "label": "A nasty bug",
+      "title": "Checkout total is 1p off",
+      "blurb": "Something is broken and nobody knows why. Diagnose it in phases instead of guessing.",
+      "steps": [
+        {
+          "skills": ["diagnosing-bugs"],
+          "note": "Reproduce → minimise → hypothesise"
+        },
+        {
+          "label": "instrument → fix",
+          "stage": "debug",
+          "note": "Confirm the cause before fixing"
+        },
+        { "skills": ["tdd"], "note": "The regression test stays" },
+        { "skills": ["code-review"], "note": "Check the diff" },
+        { "skills": ["pr"], "note": "Explain the root cause" }
+      ],
+      "chat": [
+        {
+          "you": "Some carts show a total that's 1p higher at checkout. Support has 3 tickets. Diagnose this."
+        },
+        {
+          "event": [
+            { "skill": "diagnosing-bugs" },
+            { "text": "loaded · phase-gated" }
+          ]
+        },
+        {
+          "ai": "**Phase 1, reproduce.** I wrote a script with the cart from ticket #311. It reproduces 1 out of 1 times: expected £2.84, got £2.85."
+        },
+        {
+          "ai": "**Phase 2, minimise.** The smallest failing case: three items at £1.05 with a 10% discount."
+        },
+        {
+          "ai": "**Phase 3, hypothesise.** Ranked:",
+          "ordered": true,
+          "list": [
+            "The discount is rounded per line, not on the total",
+            "A float error in the sum",
+            "Currency conversion on display"
+          ]
+        },
+        { "you": "Go with 1 first." },
+        {
+          "ai": "**Phase 4, instrument.** I logged inside `applyDiscount`. Each line rounds 94.5p up to 95p, so 3 × 95 = 285 instead of round(283.5) = 284. **Hypothesis 1 is confirmed.**"
+        },
+        {
+          "ai": "**Phase 5, fix.** Work in integer pence and round once, on the discounted total."
+        },
+        {
+          "event": [
+            { "skill": "tdd" },
+            {
+              "text": "regression: “10% off 3 × £1.05 totals £2.84” red → green"
+            }
+          ]
+        },
+        {
+          "event": [
+            { "skill": "code-review" },
+            { "text": "standards ✓ · spec ✓" }
+          ]
+        },
+        {
+          "ai": "Fixed. I removed the instrumentation and kept the regression test."
+        },
+        { "you": "`/pr`" },
+        {
+          "ai": "PR body drafted. **Root cause:** per-line rounding. **Merge danger:** medium. Totals change by up to 1p on some discounted carts, so let support know."
+        }
+      ]
+    },
+    {
+      "id": "big",
+      "stage": "plan",
+      "label": "Multi-day project",
+      "title": "Moving auth to tokens across 3 services",
+      "blurb": "Too big for one session. Map the decisions first, hand off between days, then build in parallel.",
+      "steps": [
+        { "skills": ["wayfinder"], "note": "A map of decision tickets" },
+        { "skills": ["grilling"], "note": "Resolve one decision at a time" },
+        { "skills": ["handoff"], "note": "Save the context overnight" },
+        {
+          "skills": ["to-spec", "to-tickets"],
+          "note": "Once the map is resolved"
+        },
+        {
+          "skills": ["implement-spec"],
+          "note": "Parallel subagents, one branch"
+        }
+      ],
+      "chat": [
+        {
+          "you": "`/wayfinder` We want to move from server sessions to tokens in the web, mobile and admin services."
+        },
+        {
+          "ai": "Here is a map of decisions to make before anyone writes code:",
+          "ordered": true,
+          "list": [
+            "`D1` Token format and lifetime",
+            "`D2` Refresh strategy (blocked by D1)",
+            "`D3` Rollout order across the services",
+            "`D4` How existing sessions get logged out (blocked by D3)"
+          ],
+          "after": "Shall we start on D1?"
+        },
+        { "you": "Yes, D1." },
+        {
+          "event": [
+            { "skill": "grilling" },
+            { "text": "6 questions · D1 resolved" }
+          ]
+        },
+        {
+          "ai": "D1 is resolved: short-lived access tokens with a 15-minute lifetime. Recorded as an ADR."
+        },
+        { "you": "I'm out of time for today. `/handoff`" },
+        {
+          "event": [
+            { "text": "wrote" },
+            { "file": "HANDOFF.md  · map, D1 decided, D2–D4 open" }
+          ]
+        },
+        { "divider": "next morning · fresh session" },
+        { "you": "Continue from HANDOFF.md." },
+        {
+          "ai": "Picking up from the map: D1 is done, D2 is unblocked. Here is the first D2 question…"
+        },
+        {
+          "event": [{ "skill": "grilling" }, { "text": "D2, D3, D4 resolved" }]
+        },
+        { "you": "`/to-spec` then `/to-tickets`" },
+        {
+          "ai": "Spec `#210` published, with 7 tickets. Three are ready now: web, admin, shared library."
+        },
+        { "you": "`/implement-spec #210`" },
+        {
+          "event": [
+            { "skill": "implement-spec" },
+            { "text": "branch auth-tokens · 3 subagents in parallel" }
+          ]
+        },
+        {
+          "ai": "Ready tickets are being built in parallel on one integration branch. Each one runs tdd and finishes with code-review. Mobile starts once the shared library lands."
+        }
+      ]
+    },
+    {
+      "id": "upkeep",
+      "stage": "reflect",
+      "label": "Codebase upkeep",
+      "title": "Friday survey and session retro",
+      "blurb": "Every few days, look for modules worth deepening. After a session, fix what slowed you down.",
+      "steps": [
+        {
+          "skills": ["improve-codebase-architecture"],
+          "note": "HTML report of opportunities"
+        },
+        { "skills": ["grilling"], "note": "Shape the chosen module" },
+        { "skills": ["to-tickets"], "note": "Turn it into work" },
+        { "skills": ["retro"], "note": "Improve the environment" }
+      ],
+      "chat": [
+        { "you": "`/improve-codebase-architecture`" },
+        {
+          "event": [
+            { "skill": "codebase-design" },
+            { "text": "scanning for deepening opportunities" }
+          ]
+        },
+        {
+          "event": [
+            { "text": "wrote" },
+            { "file": "architecture-report.html  · 5 opportunities" }
+          ]
+        },
+        {
+          "ai": "Top 3 from the report:",
+          "ordered": true,
+          "list": [
+            "Pricing logic is spread across 6 files with no single entry point",
+            "`NotificationService` exposes 14 methods, and callers use 3 of them",
+            "Date parsing is duplicated in the API and the worker"
+          ],
+          "after": "Which one should we dig into?"
+        },
+        { "you": "1, pricing." },
+        {
+          "ai": "**Q1.** What should callers have to know to get a price: only the cart, or the cart plus the user's plan?",
+          "rec": "Recommended: cart + plan. Discounts depend on the plan."
+        },
+        { "you": "Cart plus plan." },
+        {
+          "ai": "Resulting design: one deep `Pricing` module with a single `quote(cart, plan)` function, and the 6 files behind it. The term goes into GLOSSARY.md."
+        },
+        { "you": "`/to-tickets`" },
+        {
+          "ai": "3 tickets created: extract with tests, move callers, delete the old paths."
+        },
+        { "divider": "end of session" },
+        { "you": "`/retro`" },
+        {
+          "ai": "Fixes for your environment, worst first:",
+          "ordered": true,
+          "list": [
+            "**The test suite takes 4 min.** Add a fast unit-test command to CLAUDE.md so the agent runs that one while it iterates.",
+            "**The agent mixed up “Plan” and “Subscription”.** Add both to GLOSSARY.md.",
+            "**Lint ran only in CI.** Add a pre-commit hook."
+          ]
+        }
+      ]
+    }
+  ]
+}

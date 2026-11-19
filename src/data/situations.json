@@ -1,0 +1,70 @@
+{
+  "situations": [
+    {
+      "when": "I have an idea for a change",
+      "skill": "grill-with-docs",
+      "text": "Get interviewed until every decision is made. New terms and decisions are written into GLOSSARY.md and ADRs as you go.",
+      "then": ["to-spec", "to-tickets"]
+    },
+    {
+      "when": "I'm planning something that isn't code",
+      "skill": "grill-me",
+      "text": "The same relentless interview, without touching repo docs. Good for talks, migrations or hiring plans.",
+      "then": ["to-questionnaire"]
+    },
+    {
+      "when": "It's too big for one session",
+      "skill": "wayfinder",
+      "text": "Build a map of decision tickets, then resolve them one at a time across sessions.",
+      "then": ["handoff", "implement-spec"]
+    },
+    {
+      "when": "I have a spec or tickets ready",
+      "skill": "implement",
+      "text": "Build it with tdd at the seams you agreed on, finishing with code-review. For a whole spec in parallel, use `/implement-spec`.",
+      "then": ["pr"]
+    },
+    {
+      "when": "Something is broken or slow",
+      "skill": "diagnosing-bugs",
+      "text": "Just say “diagnose this”. Reproduce, minimise, hypothesise, instrument, fix, regression-test.",
+      "then": ["pr"]
+    },
+    {
+      "when": "I have a pile of incoming issues",
+      "skill": "triage",
+      "text": "Moves issues through a state machine of triage roles, so each one ends up ready, blocked or closed.",
+      "then": ["grill-with-docs"]
+    },
+    {
+      "when": "I need a PR description",
+      "skill": "pr",
+      "text": "Summary, before/after evidence and a call on how dangerous the merge is.",
+      "then": ["retro"]
+    },
+    {
+      "when": "I didn't understand the agent's reply",
+      "skill": "wait-what",
+      "text": "Re-explains the last message using your project's own vocabulary from GLOSSARY.md.",
+      "then": ["teach"]
+    },
+    {
+      "when": "I'm stopping, but the work isn't done",
+      "skill": "handoff",
+      "text": "Compacts the conversation into a document another agent can pick up tomorrow.",
+      "then": ["retro"]
+    },
+    {
+      "when": "The code is getting tangled",
+      "skill": "improve-codebase-architecture",
+      "text": "A survey for deepening opportunities with an HTML report, then a grilling on the one you choose.",
+      "then": ["to-tickets"]
+    },
+    {
+      "when": "I need a decision from someone else",
+      "skill": "to-questionnaire",
+      "text": "Turns a decision you can't make alone into a questionnaire for the right person.",
+      "then": ["grill-with-docs"]
+    }
+  ]
+}

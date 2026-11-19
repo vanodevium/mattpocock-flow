@@ -1,0 +1,122 @@
+.loop {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+}
+.stage {
+  position: relative;
+  padding: 18px 16px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  background: var(--card);
+  border: 1px solid var(--edge);
+  border-radius: var(--r);
+}
+.stage:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 30px;
+  right: -16px;
+  font: 500 0.9rem var(--mono);
+  color: var(--faint);
+}
+.stage-icon {
+  width: 44px;
+  height: 44px;
+}
+.stage .k {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--faint);
+  margin-top: 4px;
+}
+.stage h3 {
+  font-size: 1.08rem;
+}
+.stage p {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.stage .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.back-arrow {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  color: var(--faint);
+  font-size: 0.88rem;
+}
+.back-arrow svg {
+  width: min(520px, 60%);
+  height: 30px;
+  flex: none;
+}
+
+.helpers {
+  margin-top: 30px;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 22px;
+  align-items: start;
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--edge-2);
+}
+.helpers h3 {
+  font-size: 1.02rem;
+}
+.helpers p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-top: 6px;
+}
+.helper-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 8px;
+}
+.helper {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--edge);
+}
+.helper b {
+  font: 500 0.8rem var(--mono);
+}
+.helper span {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 1180px) {
+  .loop {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .stage::after {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .loop {
+    grid-template-columns: 1fr;
+  }
+  .helpers {
+    grid-template-columns: 1fr;
+  }
+  .back-arrow svg {
+    display: none;
+  }
+}

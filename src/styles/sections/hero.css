@@ -1,0 +1,130 @@
+.hero {
+  padding-block: clamp(40px, 7vw, 72px) clamp(48px, 7vw, 72px);
+}
+.hero .wrap {
+  display: grid;
+  gap: 40px;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 3.9rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+.hero h1 .hl {
+  background: linear-gradient(90deg, #ff8bdf, #f6c453);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero h1 .squig svg {
+  display: none;
+}
+.hero-copy {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.hero .lede {
+  font-size: 1.2rem;
+}
+
+.install {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+.install-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  background: var(--card);
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  padding: 10px 10px 10px 16px;
+}
+.install-row code {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 0.86rem;
+}
+.install-row code::before {
+  content: "$  ";
+  color: var(--faint);
+}
+.copy {
+  font: 500 0.75rem var(--mono);
+  cursor: pointer;
+  flex: none;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius: 7px;
+  padding: 6px 10px;
+}
+.copy:hover {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+.install small {
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.stage-art {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+.featured {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.term {
+  background: var(--term);
+  color: var(--term-fg);
+  border: 1px solid var(--edge);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.term > .term-bar {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--edge);
+}
+.term-body {
+  padding: 18px 20px 22px;
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  display: grid;
+  gap: 9px;
+}
+.term-body .you {
+  color: var(--accent);
+}
+.term-body .dim {
+  color: var(--term-dim);
+  white-space: pre-wrap;
+}
+.term-body .q {
+  color: var(--term-fg);
+}
+.caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  background: var(--accent);
+  vertical-align: -2px;
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

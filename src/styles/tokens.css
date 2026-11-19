@@ -1,0 +1,76 @@
+/* Dark-only, after the original skills docs: near-black ground, hairline rules,
+   mono labels, and glossy gradient tiles as the only real colour. */
+:root {
+  --paper: #0b0b0c;
+  --paper-2: #101012;
+  --card: #131315;
+  --card-2: #19191c;
+  --ink: #ededef;
+  --muted: #a0a0a7;
+  --faint: #6e6e76;
+  --edge: #242428;
+  --edge-2: #34343a;
+  --accent: #f6c453;
+  --on-accent: #151515;
+  --on-color: #0b0b0c;
+
+  /* solid tones, used by the terminal dots, squiggle, chat accents */
+  --grape: #9b7bff;
+  --sky: #5b8cff;
+  --mint: #5ee3b5;
+  --tomato: #ff5a6a;
+  --sun: #f6c453;
+  --bubble: #e36bf2;
+
+  --term: #0e0e10;
+  --term-fg: #e6e6ea;
+  --term-dim: #7c7c84;
+
+  --display: "Geist", "Inter", "Segoe UI", system-ui, sans-serif;
+  --body: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --r: 12px;
+  color-scheme: dark;
+}
+
+/* Stage classes: --c (solid tone), --g (tile gradient), --on-c (text on --c). */
+.c-align {
+  --c: #e35cf0;
+  --g: linear-gradient(140deg, #ff8bdf 0%, #c13cff 100%);
+  --on-c: var(--on-color);
+}
+.c-plan {
+  --c: #5b8cff;
+  --g: linear-gradient(140deg, #7cc0ff 0%, #4646ff 100%);
+  --on-c: var(--on-color);
+}
+.c-build {
+  --c: #3fd9b4;
+  --g: linear-gradient(140deg, #7af5cf 0%, #12a39b 100%);
+  --on-c: var(--on-color);
+}
+.c-debug {
+  --c: #ff5a6a;
+  --g: linear-gradient(140deg, #ff9a7a 0%, #e2264e 100%);
+  --on-c: var(--on-color);
+}
+.c-ship {
+  --c: #f6c453;
+  --g: linear-gradient(140deg, #ffe38a 0%, #ff9a1f 100%);
+  --on-c: var(--on-color);
+}
+.c-reflect {
+  --c: #9b7bff;
+  --g: linear-gradient(140deg, #c4aeff 0%, #6a3dff 100%);
+  --on-c: var(--on-color);
+}
+.c-neutral {
+  --c: #ff8a4c;
+  --g: linear-gradient(140deg, #ffc27a 0%, #ff5a2a 100%);
+  --on-c: var(--on-color);
+}
+.c-plain {
+  --c: #3a3a40;
+  --g: linear-gradient(140deg, #55555c 0%, #2a2a30 100%);
+  --on-c: var(--ink);
+}
